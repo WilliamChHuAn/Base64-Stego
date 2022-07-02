@@ -1,8 +1,26 @@
+# NISRA{base64xstego}
+# NISRA{8@5E64x5T3go}
+
+# https://ctf-wiki.org/misc/encode/computer/
+
+# original tool
+# https://github.com/cjcslhp/wheels/tree/master/b64stego
+
+# original usage
+# py enStego.py source.txt stego.txt NISRA{8@5E64x5T3go}
+# py deStego.py stego.txt
+
+# story of source.txt
+# https://www.plot-generator.org.uk/story/
+
+# usage
+# py Base64.py
+
 import base64
 import sys
 
 b64table = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-flag = "test123456"
+flag = "NISRA{8@5E64x5T3go}"
 
 # encode
 with open("source.txt", 'r') as sourceText, open("flag.enc", 'w') as setgoText:
@@ -73,12 +91,15 @@ with open("flag.enc",'r') as stegoText:
                     if text.count("=") == 2:
                         # find the first occurrence of i
                         # https://www.w3schools.com/python/ref_string_find.asp
-                        flag += bin(b64table.find(i))[2:].zfill(4)[2 : 6]
+                        flag += bin(b64table.find(i))[2:].zfill(6)[2 : 6]
                     else:
-                        flag += bin(b64table.find(i))[2:].zfill(2)[4 : 6]
-        
+                        flag += bin(b64table.find(i))[2:].zfill(6)[4 : 6]
+
         except:
             pass
+
+    print("Decode Binary:", flag)
+    print()
 
 decodeFlag = ""
 for i in range(0, len(flag), 8):
