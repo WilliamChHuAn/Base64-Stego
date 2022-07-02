@@ -4,9 +4,13 @@
 
 ## Reference
 
+- CTF technique
+  - https://ctf-wiki.org/misc/encode/computer/
 - To modify this tool
   - https://github.com/cjcslhp/wheels/tree/master/b64stego
-  
+- The story in source.txt
+  - https://www.plot-generator.org.uk/story/
+
 ## Usage
 
 - `py Base64.py`

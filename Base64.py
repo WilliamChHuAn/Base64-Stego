@@ -1,26 +1,8 @@
-# NISRA{base64xstego}
-# NISRA{8@5E64x5T3go}
-
-# https://ctf-wiki.org/misc/encode/computer/
-
-# original tool
-# https://github.com/cjcslhp/wheels/tree/master/b64stego
-
-# original usage
-# py enStego.py source.txt stego.txt NISRA{8@5E64x5T3go}
-# py deStego.py stego.txt
-
-# story of source.txt
-# https://www.plot-generator.org.uk/story/
-
-# usage
-# py Base64.py
-
 import base64
 import sys
 
 b64table = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-flag = "NISRA{8@5E64x5T3go}"
+flag = "test123456"
 
 # encode
 with open("source.txt", 'r') as sourceText, open("flag.enc", 'w') as setgoText:
