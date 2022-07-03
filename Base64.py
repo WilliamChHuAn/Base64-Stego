@@ -21,7 +21,7 @@ with open("source.txt", 'r') as sourceText, open("flag.enc", 'w') as setgoText:
     for i in flag:
         binFlag += bin(ord(i))[2:].zfill(8)
     
-    # 19 char x 8 = 152 bits
+    # len(stego message) x 8
     print("Convert message to binary:")
     print(binFlag)
     print()

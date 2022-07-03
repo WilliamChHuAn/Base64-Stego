@@ -16,3 +16,4 @@
 - `py Base64.py`
   - The result will write into `flag.enc`
 - If you want to change stego message => change the variable called `flag` in `Base64.py`
+- If your stego message is too long => paste more text in `source.txt`
