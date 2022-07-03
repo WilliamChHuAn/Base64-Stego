@@ -1,18 +1,3 @@
-# NISRA{base64xstego}
-# NISRA{8@5E64x5T3go}
-
-# https://ctf-wiki.org/misc/encode/computer/
-
-# original tool
-# https://github.com/cjcslhp/wheels/tree/master/b64stego
-
-# original usage
-# py enStego.py source.txt stego.txt NISRA{8@5E64x5T3go}
-# py deStego.py stego.txt
-
-# story of source.txt
-# https://www.plot-generator.org.uk/story/
-
 # usage
 # py Base64.py
 
@@ -20,13 +5,14 @@ import base64
 import sys
 
 b64table = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-flag = "NISRA{8@5E64x5T3go}"
+flag = "test123"
 
 # encode
 with open("source.txt", 'r') as sourceText, open("flag.enc", 'w') as setgoText:
     
     print()
-    print("Original flag:", flag)
+    print("Stego message:")
+    print(flag)
     print()
 
     binFlag = ""
@@ -36,7 +22,8 @@ with open("source.txt", 'r') as sourceText, open("flag.enc", 'w') as setgoText:
         binFlag += bin(ord(i))[2:].zfill(8)
     
     # 19 char x 8 = 152 bits
-    print("After convert:", binFlag)
+    print("Convert message to binary:")
+    print(binFlag)
     print()
 
     for line in sourceText:
@@ -71,12 +58,13 @@ with open("source.txt", 'r') as sourceText, open("flag.enc", 'w') as setgoText:
         if not len(binFlag):
             break
 
-    # print()
+    print("----- Stego finish -----")
+    print()
 
 # decode
 with open("flag.enc",'r') as stegoText:
 
-    flag = ""
+    binFlag = ""
 
     # list comprehension
     # https://www.w3schools.com/python/python_lists_comprehension.asp
@@ -91,18 +79,20 @@ with open("flag.enc",'r') as stegoText:
                     if text.count("=") == 2:
                         # find the first occurrence of i
                         # https://www.w3schools.com/python/ref_string_find.asp
-                        flag += bin(b64table.find(i))[2:].zfill(6)[2 : 6]
+                        binFlag += bin(b64table.find(i))[2:].zfill(6)[2 : 6]
                     else:
-                        flag += bin(b64table.find(i))[2:].zfill(6)[4 : 6]
+                        binFlag += bin(b64table.find(i))[2:].zfill(6)[4 : 6]
 
         except:
             pass
 
-    print("Decode Binary:", flag)
+    print("Find binary stego message:")
+    print(binFlag)
     print()
 
-decodeFlag = ""
-for i in range(0, len(flag), 8):
-    decodeFlag += chr(int(flag[i : i + 8], 2))
+asciiFlag = ""
+for i in range(0, len(binFlag), 8):
+    asciiFlag += chr(int(binFlag[i : i + 8], 2))
 
-print("After  decode:", decodeFlag)
+print("Convert to ASCII:")
+print(asciiFlag)
